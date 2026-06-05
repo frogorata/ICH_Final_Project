@@ -1,7 +1,6 @@
 from database.mysql_connector import MySQLConnector
 
-from utils.ui import buttons_menu, show_main_menu, ask_keyword, ask_genre, ask_year_range, ask_next_page, display_films
-
+from utils.ui import buttons_menu
 from config import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE
 
 def main():
