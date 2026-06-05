@@ -1,17 +1,30 @@
 from database.mysql_connector import MySQLConnector
-from database.mysql_connector import run_mysql_connector
+
+from utils.ui import buttons_menu, show_main_menu, ask_keyword, ask_genre, ask_year_range, ask_next_page, display_films
 
 from config import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE
 
-
-if __name__ == "__main__":
-    
-    db = MySQLConnector(
-    hostname = MYSQL_HOST,
-    username = MYSQL_USER,
-    password = MYSQL_PASSWORD,
-    port = MYSQL_PORT,
-    database = MYSQL_DATABASE
+def main():
+    main_db = MySQLConnector(
+        hostname = MYSQL_HOST,
+        username = MYSQL_USER,
+        password = MYSQL_PASSWORD,
+        port = MYSQL_PORT,
+        database = MYSQL_DATABASE
     )
+
+    try:
+        main_db.connect()
+        buttons_menu(main_db)
+
+    except Exception as e:
+        print(f"Error connecting to the database: {e}")
+        return
+    finally:
+        main_db.close()
+
         
-    run_mysql_connector(db)
+if __name__ == "__main__":
+    main()
+else:
+    print("This module is not intended to be imported. Please run it directly.")
